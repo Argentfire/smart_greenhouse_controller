@@ -369,7 +369,6 @@ void handleCommand(char *command)
       {
         Serial.println(String(tAvg) + "|" + commandId);
       }
-
       else if (cmd == "airHumidityAutomationStatus")
       {
         Serial.println(String(isHumidifierAutomated) + "|" + commandId);
@@ -382,7 +381,6 @@ void handleCommand(char *command)
       {
         Serial.println(String(isIrrigationAutomated) + "|" + commandId);
       }
-
       else if (cmd == "toggleAirHumidityAutomation")
       {
         isHumidifierAutomated = !isHumidifierAutomated;
@@ -397,6 +395,20 @@ void handleCommand(char *command)
       {
         isIrrigationAutomated = !isIrrigationAutomated;
         Serial.println(String(isIrrigationAutomated) + "|" + commandId);
+      }
+      else if (cmd == "irrigationAutomationConfiguration")
+      {
+        String minSoilMoisture = String(startIrrigationAtSoilMoisture);
+        String maxSoilMoisture = String(stopIrrigationAtSoilMoisture);
+        Serial.println(minSoilMoisture + "," + maxSoilMoisture + "|" + commandId);
+      }
+      else if (cmd == "temperatureAndHumidityAutomationConfiguration")
+      {
+        String minAirTemp = String(openWindowsAtTemperature);
+        String maxAirTemp = String(closeWindowsAtTemperature);
+        String minAirHumidity = String(startHumidifierAtHumidityLevel);
+        String maxAirHumidity = String(stopHumidifierAtHumidityLevel);
+        Serial.println(minAirTemp + "," + maxAirTemp + minAirHumidity + "," + maxAirHumidity + "|" + commandId);
       }
     }
     else
